@@ -1,8 +1,6 @@
-const express = require('express');
-const router = express.Router();
-const Plant = require('../models/plantModel');
+const { Plant } = require('../models/plantModel');
 
-router.post('/plants', async (req, res) => {
+async function createPlant (req, res, next) {
   try {
     const newPlant = await Plant.create(req.body);
     res.status(201).json(newPlant);
@@ -10,9 +8,9 @@ router.post('/plants', async (req, res) => {
     console.error(error);
     res.status(500).json({ error: 'Failed to create plant' });
   }
-});
+};
 
-router.get('/plants/:id', async (req, res) => {
+async function getPlant (req, res, next) {
   const plantId = req.params.id;
   try {
     const plant = await Plant.findByPk(plantId);
@@ -24,9 +22,9 @@ router.get('/plants/:id', async (req, res) => {
     console.error(error);
     res.status(500).json({ error: 'Failed to get plant' });
   }
-});
+};
 
-router.get('/plants', async (req, res) => {
+async function getPlants (req, res, next) {
   try {
     const plants = await Plant.findAll();
     res.json(plants);
@@ -34,9 +32,9 @@ router.get('/plants', async (req, res) => {
     console.error(error);
     res.status(500).json({ error: 'Failed to get plants' });
   }
-});
+};
 
-router.put('/plants/:id', async (req, res) => {
+async function updatePlant (req, res, next) {
   const plantId = req.params.id;
   try {
     const [updatedRowsCount] = await Plant.update(req.body, {
@@ -50,9 +48,9 @@ router.put('/plants/:id', async (req, res) => {
     console.error(error);
     res.status(500).json({ error: 'Failed to update plant' });
   }
-});
+};
 
-router.delete('/plants/:id', async (req, res) => {
+async function deletePlant (req, res) {
   const plantId = req.params.id;
   try {
     const deletedRowCount = await Plant.destroy({
@@ -66,6 +64,12 @@ router.delete('/plants/:id', async (req, res) => {
     console.error(error);
     res.status(500).json({ error: 'Failed to delete plant' });
   }
-});
+};
 
-module.exports = router;
+module.exports = {
+  createPlant,
+  getPlant,
+  getPlants,
+  updatePlant,
+  deletePlant
+};
