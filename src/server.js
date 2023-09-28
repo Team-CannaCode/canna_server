@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use(authRoutes);
-app.use(plantRoutes);
+app.use('/api', plantRoutes);
 
 // Catchalls
 app.use(notFound);
