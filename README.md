@@ -23,3 +23,9 @@
     * sqlite3
     * supertest
 * Running application after dependency installation: npm run dev
+
+## Authors
+* Samaad Turner
+* Josh Easley
+* Alejandra Altamirano
+* Anthony Cunningham
