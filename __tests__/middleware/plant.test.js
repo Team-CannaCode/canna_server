@@ -100,7 +100,7 @@ describe('Plant API', () => {
   });
 
   it('can update a plant (PUT /api/plant/:id)', async () => {
-    const plant = await Plant.findOne({ where: { plantName: 'Purple Trainwreck' } });
+    const plant = await Plant.findOne({ where: { plantName: 'Jack Herer' } });
     const response = await request(app)
       .put(`/api/plant/${plant.id}`)
       .send({ plantName: 'Jack Herer', plantStrain: 'Sativa' });
