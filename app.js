@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 const base64 = require('base-64');
 const { Sequelize, DataTypes } = require('sequelize');
 
-// Prepare the express app
+
 const app = express();
 
 // Process JSON input and put the data on req.body
