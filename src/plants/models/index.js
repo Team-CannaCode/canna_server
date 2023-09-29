@@ -20,5 +20,5 @@ const sequelize = new Sequelize(DATABASE_URL, DATABASE_CONFIG);
 
 module.exports = {
   db: sequelize,
-  users: plantModel(sequelize, DataTypes),
+  plants: plantModel(sequelize, DataTypes),
 };

@@ -2,8 +2,15 @@
 
 process.env.SECRET = "TEST_SECRET";
 const bearer = require('../../src/auth/middleware/bearer.js');
-const { db, users } = require('../../src/auth/models/index.js');
+const { db, users, Plant } = require('../../src/auth/models/index.js');
 const jwt = require('jsonwebtoken');
+const request = require('supertest');
+const app = require ('../../src/server.js');
+
+
+let plantInfo = {
+  plant: { plantName: 'Jack Herer', plantStrain: 'Sativa' },
+};
 
 let userInfo = {
   admin: { username: 'admin', password: 'password' },
@@ -106,7 +113,7 @@ describe('Plant API', () => {
       .send({ plantName: 'Jack Herer', plantStrain: 'Sativa' });
 
     expect(response.status).toBe(200);
-    expect(response.body.plantStrain).toBe('Jack Herer');
+    expect(response.body.plantStrain).toBe('Sativa');
   });
 
   it('can delete a plant (DELETE /api/plant/:id)', async () => {
